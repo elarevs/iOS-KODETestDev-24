@@ -18,7 +18,7 @@ protocol SortApplyDelegate: AnyObject{
     func applyFilter(_ sortingType: SortingType)
 }
 
-final class SortingViewController: UIViewController {
+final class SortViewController: UIViewController {
     
     private let alphabeticallySortingView = RadioButtonView()
     private let byBirthdaySortingView = RadioButtonView()
