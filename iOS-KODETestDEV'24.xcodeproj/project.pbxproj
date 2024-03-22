@@ -17,6 +17,9 @@
 		03B75EAD2BADDE9A009B0022 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03B75EA82BADDE9A009B0022 /* Inter-SemiBold.ttf */; };
 		03B75EAE2BADDE9A009B0022 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 03B75EA92BADDE9A009B0022 /* Fonts */; };
 		03B75EAF2BADDE9A009B0022 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03B75EAA2BADDE9A009B0022 /* Inter-Regular.ttf */; };
+		03B75EB12BADDF61009B0022 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75EB02BADDF61009B0022 /* UIView+.swift */; };
+		03B75EB32BADDFEA009B0022 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75EB22BADDFEA009B0022 /* NetworkManager.swift */; };
+		03B75EB52BADDFF6009B0022 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75EB42BADDFF6009B0022 /* DateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		03B75EA82BADDE9A009B0022 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		03B75EA92BADDE9A009B0022 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		03B75EAA2BADDE9A009B0022 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		03B75EB02BADDF61009B0022 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		03B75EB22BADDFEA009B0022 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		03B75EB42BADDFF6009B0022 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,9 @@
 		03B75EA12BADDD43009B0022 /* MainContacts */ = {
 			isa = PBXGroup;
 			children = (
+				03B75EB82BADE009009B0022 /* Controller */,
+				03B75EB72BADE004009B0022 /* Views */,
+				03B75EB62BADDFFE009B0022 /* Model */,
 				03B75E902BADDC63009B0022 /* ContactsViewController.swift */,
 			);
 			path = MainContacts;
@@ -102,6 +111,7 @@
 		03B75EA22BADDD5A009B0022 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				03B75EB02BADDF61009B0022 /* UIView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -109,6 +119,8 @@
 		03B75EA32BADDD6A009B0022 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				03B75EB22BADDFEA009B0022 /* NetworkManager.swift */,
+				03B75EB42BADDFF6009B0022 /* DateFormatter.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -116,6 +128,8 @@
 		03B75EA42BADDD74009B0022 /* CardContact */ = {
 			isa = PBXGroup;
 			children = (
+				03B75EBC2BADE020009B0022 /* Controller */,
+				03B75EBB2BADE01B009B0022 /* Views */,
 			);
 			path = CardContact;
 			sourceTree = "<group>";
@@ -123,8 +137,59 @@
 		03B75EA52BADDD89009B0022 /* SortContacts */ = {
 			isa = PBXGroup;
 			children = (
+				03B75EBA2BADE015009B0022 /* Controller */,
+				03B75EB92BADE010009B0022 /* Views */,
 			);
 			path = SortContacts;
+			sourceTree = "<group>";
+		};
+		03B75EB62BADDFFE009B0022 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		03B75EB72BADE004009B0022 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		03B75EB82BADE009009B0022 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		03B75EB92BADE010009B0022 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		03B75EBA2BADE015009B0022 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		03B75EBB2BADE01B009B0022 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		03B75EBC2BADE020009B0022 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,7 +267,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03B75EB52BADDFF6009B0022 /* DateFormatter.swift in Sources */,
+				03B75EB12BADDF61009B0022 /* UIView+.swift in Sources */,
 				03B75E912BADDC63009B0022 /* ContactsViewController.swift in Sources */,
+				03B75EB32BADDFEA009B0022 /* NetworkManager.swift in Sources */,
 				03B75E8D2BADDC63009B0022 /* AppDelegate.swift in Sources */,
 				03B75E8F2BADDC63009B0022 /* SceneDelegate.swift in Sources */,
 			);
