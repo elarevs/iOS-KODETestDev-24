@@ -49,7 +49,7 @@ final class ContactsSearchBar: UISearchBar {
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).title = "Отмена"
         let cancelButtonAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor(red: 0.396, green: 0.204, blue: 1, alpha: 1),
-            .font: UIFont(name: "Inter-SemiBold", size: 14)]
+            .font: UIFont(name: "Inter-SemiBold", size: 14) ?? .systemFont(ofSize: 14, weight: .semibold)]
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(cancelButtonAttributes, for: .normal)
     }
 
