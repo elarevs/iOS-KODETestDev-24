@@ -12,6 +12,11 @@
 		03B75E912BADDC63009B0022 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75E902BADDC63009B0022 /* ContactsViewController.swift */; };
 		03B75E962BADDC64009B0022 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03B75E952BADDC64009B0022 /* Assets.xcassets */; };
 		03B75E992BADDC64009B0022 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B75E972BADDC64009B0022 /* LaunchScreen.storyboard */; };
+		03B75EAB2BADDE9A009B0022 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03B75EA62BADDE9A009B0022 /* Inter-Bold.ttf */; };
+		03B75EAC2BADDE9A009B0022 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03B75EA72BADDE9A009B0022 /* Inter-Medium.ttf */; };
+		03B75EAD2BADDE9A009B0022 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03B75EA82BADDE9A009B0022 /* Inter-SemiBold.ttf */; };
+		03B75EAE2BADDE9A009B0022 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 03B75EA92BADDE9A009B0022 /* Fonts */; };
+		03B75EAF2BADDE9A009B0022 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03B75EAA2BADDE9A009B0022 /* Inter-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		03B75E952BADDC64009B0022 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03B75E982BADDC64009B0022 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03B75E9A2BADDC64009B0022 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03B75EA62BADDE9A009B0022 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
+		03B75EA72BADDE9A009B0022 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
+		03B75EA82BADDE9A009B0022 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		03B75EA92BADDE9A009B0022 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
+		03B75EAA2BADDE9A009B0022 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,17 +64,14 @@
 		03B75E8B2BADDC63009B0022 /* iOS-KODETestDEV'24 */ = {
 			isa = PBXGroup;
 			children = (
+				03B75E8C2BADDC63009B0022 /* AppDelegate.swift */,
+				03B75E8E2BADDC63009B0022 /* SceneDelegate.swift */,
+				03B75EA12BADDD43009B0022 /* MainContacts */,
 				03B75EA52BADDD89009B0022 /* SortContacts */,
 				03B75EA42BADDD74009B0022 /* CardContact */,
 				03B75EA32BADDD6A009B0022 /* Services */,
 				03B75EA22BADDD5A009B0022 /* Extensions */,
-				03B75EA12BADDD43009B0022 /* Contacts */,
 				03B75EA02BADDD3A009B0022 /* Resources */,
-				03B75E8C2BADDC63009B0022 /* AppDelegate.swift */,
-				03B75E8E2BADDC63009B0022 /* SceneDelegate.swift */,
-				03B75E902BADDC63009B0022 /* ContactsViewController.swift */,
-				03B75E952BADDC64009B0022 /* Assets.xcassets */,
-				03B75E972BADDC64009B0022 /* LaunchScreen.storyboard */,
 				03B75E9A2BADDC64009B0022 /* Info.plist */,
 			);
 			path = "iOS-KODETestDEV'24";
@@ -73,15 +80,23 @@
 		03B75EA02BADDD3A009B0022 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				03B75EA92BADDE9A009B0022 /* Fonts */,
+				03B75EA62BADDE9A009B0022 /* Inter-Bold.ttf */,
+				03B75EA72BADDE9A009B0022 /* Inter-Medium.ttf */,
+				03B75EAA2BADDE9A009B0022 /* Inter-Regular.ttf */,
+				03B75EA82BADDE9A009B0022 /* Inter-SemiBold.ttf */,
+				03B75E952BADDC64009B0022 /* Assets.xcassets */,
+				03B75E972BADDC64009B0022 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		03B75EA12BADDD43009B0022 /* Contacts */ = {
+		03B75EA12BADDD43009B0022 /* MainContacts */ = {
 			isa = PBXGroup;
 			children = (
+				03B75E902BADDC63009B0022 /* ContactsViewController.swift */,
 			);
-			path = Contacts;
+			path = MainContacts;
 			sourceTree = "<group>";
 		};
 		03B75EA22BADDD5A009B0022 /* Extensions */ = {
@@ -170,8 +185,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03B75EAC2BADDE9A009B0022 /* Inter-Medium.ttf in Resources */,
+				03B75EAB2BADDE9A009B0022 /* Inter-Bold.ttf in Resources */,
 				03B75E992BADDC64009B0022 /* LaunchScreen.storyboard in Resources */,
+				03B75EAE2BADDE9A009B0022 /* Fonts in Resources */,
+				03B75EAD2BADDE9A009B0022 /* Inter-SemiBold.ttf in Resources */,
 				03B75E962BADDC64009B0022 /* Assets.xcassets in Resources */,
+				03B75EAF2BADDE9A009B0022 /* Inter-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
