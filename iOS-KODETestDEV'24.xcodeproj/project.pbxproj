@@ -36,6 +36,7 @@
 		03B75EDA2BADE40F009B0022 /* CardContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75ED92BADE40F009B0022 /* CardContactView.swift */; };
 		03B75EDC2BADE43F009B0022 /* DateOfBirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75EDB2BADE43F009B0022 /* DateOfBirthView.swift */; };
 		03B75EDE2BADE44C009B0022 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75EDD2BADE44C009B0022 /* PhoneView.swift */; };
+		03B75EE12BADED00009B0022 /* ContactModel+currentBirth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75EE02BADED00009B0022 /* ContactModel+currentBirth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		03B75ED92BADE40F009B0022 /* CardContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContactView.swift; sourceTree = "<group>"; };
 		03B75EDB2BADE43F009B0022 /* DateOfBirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOfBirthView.swift; sourceTree = "<group>"; };
 		03B75EDD2BADE44C009B0022 /* PhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
+		03B75EE02BADED00009B0022 /* ContactModel+currentBirth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactModel+currentBirth.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 		03B75EB62BADDFFE009B0022 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				03B75EDF2BADECD1009B0022 /* Extensions */,
 				03B75EBD2BADE0A8009B0022 /* ContactModel.swift */,
 				03B75EBF2BADE110009B0022 /* EnumDepartment.swift */,
 			);
@@ -256,6 +259,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		03B75EDF2BADECD1009B0022 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				03B75EE02BADED00009B0022 /* ContactModel+currentBirth.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -333,6 +344,7 @@
 			files = (
 				03B75ECE2BADE33F009B0022 /* ContactsTableViewCell.swift in Sources */,
 				03B75EC62BADE2E4009B0022 /* ContactsTableView.swift in Sources */,
+				03B75EE12BADED00009B0022 /* ContactModel+currentBirth.swift in Sources */,
 				03B75EC02BADE110009B0022 /* EnumDepartment.swift in Sources */,
 				03B75EDA2BADE40F009B0022 /* CardContactView.swift in Sources */,
 				03B75EB52BADDFF6009B0022 /* DateFormatter.swift in Sources */,

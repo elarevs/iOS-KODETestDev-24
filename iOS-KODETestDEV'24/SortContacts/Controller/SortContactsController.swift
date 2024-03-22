@@ -38,6 +38,7 @@ final class SortViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        backButtonSetup()
     }
     
     private func setupViews() {
