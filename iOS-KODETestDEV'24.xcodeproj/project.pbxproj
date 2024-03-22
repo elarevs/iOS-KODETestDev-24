@@ -28,8 +28,8 @@
 		03B75EC82BADE2F6009B0022 /* DepartmentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75EC72BADE2F6009B0022 /* DepartmentCollectionView.swift */; };
 		03B75ECC2BADE326009B0022 /* DepartmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75ECB2BADE326009B0022 /* DepartmentCollectionViewCell.swift */; };
 		03B75ECE2BADE33F009B0022 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75ECD2BADE33F009B0022 /* ContactsTableViewCell.swift */; };
-		03B75ED02BADE34F009B0022 /* ErrorOfSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75ECF2BADE34F009B0022 /* ErrorOfSearch.swift */; };
-		03B75ED22BADE366009B0022 /* ErrorOfFatal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75ED12BADE366009B0022 /* ErrorOfFatal.swift */; };
+		03B75ED02BADE34F009B0022 /* ErrorOfSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75ECF2BADE34F009B0022 /* ErrorOfSearchView.swift */; };
+		03B75ED22BADE366009B0022 /* ErrorOfFatalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75ED12BADE366009B0022 /* ErrorOfFatalView.swift */; };
 		03B75ED42BADE3CD009B0022 /* SortContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75ED32BADE3CD009B0022 /* SortContactsController.swift */; };
 		03B75ED62BADE3E0009B0022 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75ED52BADE3E0009B0022 /* RadioButtonView.swift */; };
 		03B75ED82BADE3FB009B0022 /* CardContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75ED72BADE3FB009B0022 /* CardContactController.swift */; };
@@ -62,8 +62,8 @@
 		03B75EC72BADE2F6009B0022 /* DepartmentCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentCollectionView.swift; sourceTree = "<group>"; };
 		03B75ECB2BADE326009B0022 /* DepartmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		03B75ECD2BADE33F009B0022 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
-		03B75ECF2BADE34F009B0022 /* ErrorOfSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorOfSearch.swift; sourceTree = "<group>"; };
-		03B75ED12BADE366009B0022 /* ErrorOfFatal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorOfFatal.swift; sourceTree = "<group>"; };
+		03B75ECF2BADE34F009B0022 /* ErrorOfSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorOfSearchView.swift; sourceTree = "<group>"; };
+		03B75ED12BADE366009B0022 /* ErrorOfFatalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorOfFatalView.swift; sourceTree = "<group>"; };
 		03B75ED32BADE3CD009B0022 /* SortContactsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortContactsController.swift; sourceTree = "<group>"; };
 		03B75ED52BADE3E0009B0022 /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
 		03B75ED72BADE3FB009B0022 /* CardContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContactController.swift; sourceTree = "<group>"; };
@@ -241,8 +241,8 @@
 		03B75EC92BADE2FD009B0022 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				03B75ECF2BADE34F009B0022 /* ErrorOfSearch.swift */,
-				03B75ED12BADE366009B0022 /* ErrorOfFatal.swift */,
+				03B75ECF2BADE34F009B0022 /* ErrorOfSearchView.swift */,
+				03B75ED12BADE366009B0022 /* ErrorOfFatalView.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -336,7 +336,7 @@
 				03B75EC02BADE110009B0022 /* EnumDepartment.swift in Sources */,
 				03B75EDA2BADE40F009B0022 /* CardContactView.swift in Sources */,
 				03B75EB52BADDFF6009B0022 /* DateFormatter.swift in Sources */,
-				03B75ED22BADE366009B0022 /* ErrorOfFatal.swift in Sources */,
+				03B75ED22BADE366009B0022 /* ErrorOfFatalView.swift in Sources */,
 				03B75EB12BADDF61009B0022 /* UIView+.swift in Sources */,
 				03B75ED42BADE3CD009B0022 /* SortContactsController.swift in Sources */,
 				03B75EC82BADE2F6009B0022 /* DepartmentCollectionView.swift in Sources */,
@@ -350,7 +350,7 @@
 				03B75EC42BADE2CE009B0022 /* ContactsSearchBar.swift in Sources */,
 				03B75EDC2BADE43F009B0022 /* DateOfBirthView.swift in Sources */,
 				03B75E8F2BADDC63009B0022 /* SceneDelegate.swift in Sources */,
-				03B75ED02BADE34F009B0022 /* ErrorOfSearch.swift in Sources */,
+				03B75ED02BADE34F009B0022 /* ErrorOfSearchView.swift in Sources */,
 				03B75ECC2BADE326009B0022 /* DepartmentCollectionViewCell.swift in Sources */,
 				03B75EDE2BADE44C009B0022 /* PhoneView.swift in Sources */,
 			);
