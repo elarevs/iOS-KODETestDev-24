@@ -25,7 +25,7 @@
 		03B75EC22BADE2BD009B0022 /* HeaderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75EC12BADE2BD009B0022 /* HeaderSectionView.swift */; };
 		03B75EC42BADE2CE009B0022 /* ContactsSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75EC32BADE2CE009B0022 /* ContactsSearchBar.swift */; };
 		03B75EC62BADE2E4009B0022 /* ContactsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75EC52BADE2E4009B0022 /* ContactsTableView.swift */; };
-		03B75EC82BADE2F6009B0022 /* DepartmentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75EC72BADE2F6009B0022 /* DepartmentCollectionView.swift */; };
+		03B75EC82BADE2F6009B0022 /* DepartmentMenuCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75EC72BADE2F6009B0022 /* DepartmentMenuCollectionView.swift */; };
 		03B75ECC2BADE326009B0022 /* DepartmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75ECB2BADE326009B0022 /* DepartmentCollectionViewCell.swift */; };
 		03B75ECE2BADE33F009B0022 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75ECD2BADE33F009B0022 /* ContactsTableViewCell.swift */; };
 		03B75ED02BADE34F009B0022 /* ErrorOfSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B75ECF2BADE34F009B0022 /* ErrorOfSearchView.swift */; };
@@ -59,7 +59,7 @@
 		03B75EC12BADE2BD009B0022 /* HeaderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionView.swift; sourceTree = "<group>"; };
 		03B75EC32BADE2CE009B0022 /* ContactsSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsSearchBar.swift; sourceTree = "<group>"; };
 		03B75EC52BADE2E4009B0022 /* ContactsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableView.swift; sourceTree = "<group>"; };
-		03B75EC72BADE2F6009B0022 /* DepartmentCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentCollectionView.swift; sourceTree = "<group>"; };
+		03B75EC72BADE2F6009B0022 /* DepartmentMenuCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentMenuCollectionView.swift; sourceTree = "<group>"; };
 		03B75ECB2BADE326009B0022 /* DepartmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		03B75ECD2BADE33F009B0022 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
 		03B75ECF2BADE34F009B0022 /* ErrorOfSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorOfSearchView.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 				03B75EC12BADE2BD009B0022 /* HeaderSectionView.swift */,
 				03B75EC32BADE2CE009B0022 /* ContactsSearchBar.swift */,
 				03B75EC52BADE2E4009B0022 /* ContactsTableView.swift */,
-				03B75EC72BADE2F6009B0022 /* DepartmentCollectionView.swift */,
+				03B75EC72BADE2F6009B0022 /* DepartmentMenuCollectionView.swift */,
 				03B75ECA2BADE303009B0022 /* Cells */,
 				03B75EC92BADE2FD009B0022 /* Errors */,
 			);
@@ -339,7 +339,7 @@
 				03B75ED22BADE366009B0022 /* ErrorOfFatalView.swift in Sources */,
 				03B75EB12BADDF61009B0022 /* UIView+.swift in Sources */,
 				03B75ED42BADE3CD009B0022 /* SortContactsController.swift in Sources */,
-				03B75EC82BADE2F6009B0022 /* DepartmentCollectionView.swift in Sources */,
+				03B75EC82BADE2F6009B0022 /* DepartmentMenuCollectionView.swift in Sources */,
 				03B75EC22BADE2BD009B0022 /* HeaderSectionView.swift in Sources */,
 				03B75ED82BADE3FB009B0022 /* CardContactController.swift in Sources */,
 				03B75E912BADDC63009B0022 /* ContactsViewController.swift in Sources */,
