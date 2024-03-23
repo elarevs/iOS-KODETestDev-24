@@ -20,18 +20,22 @@ final class CardContactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setConstraints()
         backButtonSetup()
         handlePhoneTapNumber()
     }
     
     private func setupViews() {
+        view.backgroundColor = .white
+        
         view.addSubview(profileView)
         view.addSubview(birthView)
         view.addSubview(phoneNumberView)
-        view.backgroundColor = .white
         
         setupUserProfile()
-        
+    }
+    
+    private func setConstraints() {
         profileView.translatesAutoresizingMaskIntoConstraints = false
         birthView.translatesAutoresizingMaskIntoConstraints = false
         phoneNumberView.translatesAutoresizingMaskIntoConstraints = false
@@ -129,7 +133,6 @@ final class CardContactViewController: UIViewController {
             self.makeCall()
         }
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        // изменение цвета кнопок по ТЗ
         callAction.setValue(UIColor(red: 0.198, green: 0.198, blue: 0.198, alpha: 1), forKey: "titleTextColor")
         cancelAction.setValue(UIColor(red: 0.198, green: 0.198, blue: 0.198, alpha: 1), forKey: "titleTextColor")
         alertController.addAction(callAction)
@@ -153,7 +156,7 @@ final class CardContactViewController: UIViewController {
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: { success in
                 if success {
-                    print("Идет вызов")
+                    print("")
                 } else {
                     print("Не удалось совершить звонок")
                 }
@@ -168,7 +171,6 @@ final class CardContactViewController: UIViewController {
             print("Некорректный номер телефона")
             return
         }
-        
         openCallURL(phoneNumber: phoneNumber)
     }
     

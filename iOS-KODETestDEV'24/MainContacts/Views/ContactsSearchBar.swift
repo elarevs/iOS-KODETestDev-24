@@ -19,14 +19,14 @@ final class ContactsSearchBar: UISearchBar {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        searchBarSetup()
+        setupSearchBar()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func searchBarSetup() {
+    private func setupSearchBar() {
         self.delegate = self
         
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -56,6 +56,7 @@ final class ContactsSearchBar: UISearchBar {
 }
 
 extension ContactsSearchBar: UISearchBarDelegate {
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBarDelegate?.searchBar(searchBar, textDidChange: searchText)
         self.setImage(UIImage(named: "searchDark"), for: .search, state: .normal)

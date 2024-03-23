@@ -9,16 +9,15 @@ import Foundation
 import UIKit
 
 protocol SortButtonDelegate: AnyObject {
-    func didSelectFilter(selectedData: Departments)
+    func didSelectSort(selectedData: Departments)
 }
 
 final class DepartmentMenuCollectionView: UICollectionView {
     
     private var departments: [Departments] = []
     private let departmentLayout = UICollectionViewFlowLayout()
-
     private var selectedIndexPath: IndexPath?
-
+    
     weak var sortDelegate: SortButtonDelegate?
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
@@ -45,6 +44,7 @@ final class DepartmentMenuCollectionView: UICollectionView {
         self.delegate = self
         self.dataSource = self
     }
+    
 }
 
 extension DepartmentMenuCollectionView : UICollectionViewDelegate, UICollectionViewDataSource {
@@ -85,8 +85,8 @@ extension DepartmentMenuCollectionView : UICollectionViewDelegate, UICollectionV
     
     func updateSortDelegate() {
         if let selectedIndexPath = selectedIndexPath {
-            let selectedFilter = departments[selectedIndexPath.item]
-            sortDelegate?.didSelectFilter(selectedData: selectedFilter)
+            let selectedSort = departments[selectedIndexPath.item]
+            sortDelegate?.didSelectSort(selectedData: selectedSort)
         } else {
             print("Delegate not called")
         }

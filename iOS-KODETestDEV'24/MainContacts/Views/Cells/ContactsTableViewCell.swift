@@ -21,6 +21,11 @@ final class ContactTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
+        setConstraints()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func prepareForReuse() {
@@ -28,10 +33,6 @@ final class ContactTableViewCell: UITableViewCell {
         photoImageView.image = nil
         nameLabel.text = nil
         positionLabel.text = nil
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     private func setupViews() {
@@ -43,22 +44,21 @@ final class ContactTableViewCell: UITableViewCell {
         addSubview(userTagLabel)
         addSubview(dateOfBirthLabel)
         
-        setConstraints()
-        
         configurePhotoImageView()
         configureNameLabel()
         configurePositionLabel()
         configureUserTagLabel()
         configureDateOfBirthLabel()
-        
+     
+    }
+    
+    private func setConstraints() {
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         positionLabel.translatesAutoresizingMaskIntoConstraints = false
         userTagLabel.translatesAutoresizingMaskIntoConstraints = false
         dateOfBirthLabel.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    private func setConstraints() {
+        
         NSLayoutConstraint.activate([
             photoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 6),
             photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -6),

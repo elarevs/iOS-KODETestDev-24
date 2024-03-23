@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-// MARK: - Networking
 final class NetworkManager {
     
     static let shared = NetworkManager()
@@ -37,7 +36,6 @@ final class NetworkManager {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("code=200, example=success", forHTTPHeaderField: "Prefer")
         //request.setValue("code=500, dynamic=true", forHTTPHeaderField: "Prefer")
-        
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {

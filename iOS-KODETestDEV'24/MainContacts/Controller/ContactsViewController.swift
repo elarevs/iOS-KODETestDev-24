@@ -22,7 +22,7 @@ final class ContactsViewController: UIViewController {
     private let errorReload = FatalError()
     
     private var contacts = [Contact]()
-    private var filteredContacts = [Contact]()
+    private var sortedContacts = [Contact]()
     private var selectedDepartment: Departments = .all
     private var currentSortingType: SortingType = .withoutSorting
     private var searchText: String = ""
@@ -31,10 +31,13 @@ final class ContactsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setDelegates()
+        setConstraints()
     }
     
     private func setupViews() {
         view.backgroundColor = .white
+        
         view.addSubview(contactsSearchBar)
         view.addSubview(departmentMenuCollection)
         view.addSubview(contactsTable)
@@ -46,14 +49,10 @@ final class ContactsViewController: UIViewController {
         pullToRefreshSetup()
         fetchContacts()
         
-        departmentMenuCollection.sortDelegate = self
-        contactsSearchBar.searchBarDelegate = self
-        
         searchError.isHidden = true
-        
-        contactsTable.delegate = self
-        contactsTable.dataSource = self
-        
+    }
+    
+    private func setConstraints() {
         contactsSearchBar.translatesAutoresizingMaskIntoConstraints = false
         departmentMenuCollection.translatesAutoresizingMaskIntoConstraints = false
         contactsTable.translatesAutoresizingMaskIntoConstraints = false
@@ -88,7 +87,14 @@ final class ContactsViewController: UIViewController {
             searchError.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             searchError.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+    
+    private func setDelegates() {
+        departmentMenuCollection.sortDelegate = self
+        contactsSearchBar.searchBarDelegate = self
         
+        contactsTable.delegate = self
+        contactsTable.dataSource = self
     }
     
     private func errorReloadSetup(){
@@ -117,6 +123,8 @@ final class ContactsViewController: UIViewController {
         dataRefreshControl.endRefreshing()
     }
     
+    // MARK: - Networking
+    
     private func fetchContacts() {
         networkManager.fetchContacts { [weak self] result in
             switch result {
@@ -136,7 +144,7 @@ final class ContactsViewController: UIViewController {
     
     private func updateUIOnSuccess() {
         self.dataRefreshControl.endRefreshing()
-        self.sortAndFilterContactsByDepartment()
+        self.sortedContactsByDepartment()
         self.departmentMenuCollection.updateSortDelegate()
         self.errorReload.isHidden = true
         self.errorViewToggleVisibility(isHidden: false)
@@ -154,7 +162,9 @@ final class ContactsViewController: UIViewController {
     
 }
 
-extension ContactsViewController: UITableViewDelegate, UITableViewDataSource, SortButtonDelegate, ContactsSearchBarDelegate, SortApplyDelegate {
+// MARK: - TableView Delegate + DataSource
+
+extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if currentSortingType == .byBirthday {
@@ -168,29 +178,29 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource, So
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if currentSortingType == .byBirthday {
             if section == 0 {
-                return filteredContacts.count - counterOfContactsAfter2025
+                return sortedContacts.count - counterOfContactsAfter2025
             } else if section == 1 {
                 return counterOfContactsAfter2025
             }
         }
-        return filteredContacts.count
+        return sortedContacts.count
     }
-        
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ContactTableViewCell else {
             return UITableViewCell()
         }
-  
-        let contact = filteredContacts[indexPath.row]
-        print(filteredContacts.count)
+        
+        let contact = sortedContacts[indexPath.row]
+        print(sortedContacts.count)
         if currentSortingType == .byBirthday {
             print(howManyContactsAfter2025)
             if indexPath.section == 0 {
                 cell.configure(contacts: contact)
             } else if indexPath.section == 1 {
-                print(filteredContacts.count)
-                print([indexPath.row + filteredContacts.count - counterOfContactsAfter2025])
-                cell.configure(contacts: filteredContacts[indexPath.row + filteredContacts.count - counterOfContactsAfter2025])
+                print(sortedContacts.count)
+                print([indexPath.row + sortedContacts.count - counterOfContactsAfter2025])
+                cell.configure(contacts: sortedContacts[indexPath.row + sortedContacts.count - counterOfContactsAfter2025])
             }
         } else {
             cell.configure(contacts: contact)
@@ -201,12 +211,12 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource, So
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         print(indexPath.section, indexPath.row)
-        var selectedContact = filteredContacts[indexPath.row]
+        var selectedContact = sortedContacts[indexPath.row]
         if currentSortingType == .byBirthday {
             if indexPath.section == 0 {
-                selectedContact = filteredContacts[indexPath.row]
+                selectedContact = sortedContacts[indexPath.row]
             } else if indexPath.section == 1 {
-                selectedContact = filteredContacts[indexPath.row + filteredContacts.count - counterOfContactsAfter2025]
+                selectedContact = sortedContacts[indexPath.row + sortedContacts.count - counterOfContactsAfter2025]
             }
         }
         let cardContactsViewController = CardContactViewController()
@@ -235,21 +245,30 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource, So
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if (currentSortingType == .alphabetically) || (currentSortingType == .withoutSorting) {
             return 0
-        } else if section >= filteredContacts.count {
+        } else if section >= sortedContacts.count {
             return 0
         }
         return 30
     }
     
-    // MARK: - Extensions for UICollectionView
-    func didSelectFilter(selectedData: Departments) {
+}
+
+// MARK: - SortButton Delegate
+
+extension ContactsViewController: SortButtonDelegate {
+    
+    func didSelectSort(selectedData: Departments) {
         selectedDepartment = selectedData
-        sortAndFilterContactsByDepartment()
+        sortedContactsByDepartment()
     }
+    
+}
+
+extension ContactsViewController: ContactsSearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
-        sortAndFilterContactsByDepartment()
+        sortedContactsByDepartment()
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
@@ -262,22 +281,11 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource, So
         navigationController?.present(navVC, animated: true)
     }
     
-    func applyFilter(_ sortingType: SortingType) {
-        currentSortingType = sortingType
-        sortAndFilterContactsByDepartment()
-    }
-    
-    func nextBirthday(for birthdayString: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        let birthday = dateFormatter.date(from: birthdayString)!
-        
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.day, .month], from: birthday)
-        
-        return calendar.nextDate(after: .now, matching: components, matchingPolicy: .nextTime) ?? .distantFuture
-    }
+}
+
+// MARK: - Counting contacts births after 2025
+
+extension ContactsViewController {
     
     func howManyContactsAfter2025() -> Int {
         counterOfContactsAfter2025 = 0
@@ -292,7 +300,7 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource, So
         let userCalendar = Calendar(identifier: .gregorian)
         let someDateTime = userCalendar.date(from: dateComponents)
         
-        for contact in filteredContacts {
+        for contact in sortedContacts {
             if someDateTime! < contact.currentBirth! {
                 counterOfContactsAfter2025 = counterOfContactsAfter2025 + 1
             } else {
@@ -301,25 +309,35 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource, So
         }
         return counterOfContactsAfter2025
     }
-
     
-    func sortAndFilterContactsByDepartment() {
+}
+
+// MARK: - SortDelegate
+
+extension ContactsViewController: SortApplyDelegate {
+
+    func applySort(_ sortingType: SortingType) {
+        currentSortingType = sortingType
+        sortedContactsByDepartment()
+    }
+
+    func sortedContactsByDepartment() {
         if selectedDepartment == .all {
-            filteredContacts = contacts
+            sortedContacts = contacts
         } else {
-            filteredContacts = contacts.filter { $0.department == selectedDepartment }
+            sortedContacts = contacts.filter { $0.department == selectedDepartment }
         }
         
         if !searchText.isEmpty {
             if selectedDepartment != .all {
-                filteredContacts = filteredContacts.filter { contact in
+                sortedContacts = sortedContacts.filter { contact in
                     return contact.firstName.lowercased().contains(searchText.lowercased()) ||
                     contact.lastName.lowercased().contains(searchText.lowercased()) ||
                     contact.userTag.lowercased().contains(searchText.lowercased()) ||
                     contact.phone.lowercased().contains(searchText.lowercased())
                 }
             } else {
-                filteredContacts = contacts.filter { contact in
+                sortedContacts = contacts.filter { contact in
                     return contact.firstName.lowercased().contains(searchText.lowercased()) ||
                     contact.lastName.lowercased().contains(searchText.lowercased()) ||
                     contact.userTag.lowercased().contains(searchText.lowercased()) ||
@@ -328,8 +346,8 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource, So
             }
         }
         
-        contactsTable.isHidden = filteredContacts.isEmpty
-        searchError.isHidden = !filteredContacts.isEmpty
+        contactsTable.isHidden = sortedContacts.isEmpty
+        searchError.isHidden = !sortedContacts.isEmpty
         contactsSearchBar.searchTextField.clearButtonMode = .always
         
         if !searchError.isHidden {
@@ -339,10 +357,10 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource, So
         switch currentSortingType {
         case .alphabetically:
             self.contactsSearchBar.setImage(UIImage(named: "optionSelected"), for: .bookmark, state: .normal)
-            filteredContacts.sort { $0.firstName < $1.firstName }
+            sortedContacts.sort { $0.firstName < $1.firstName }
         case .byBirthday:
             self.contactsSearchBar.setImage(UIImage(named: "optionSelected"), for: .bookmark, state: .normal)
-            filteredContacts = filteredContacts.sorted {
+            sortedContacts = sortedContacts.sorted {
                 if let date1 = $0.currentBirth, let date2 = $1.currentBirth {
                     return date1 < date2
                 }
@@ -351,7 +369,7 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource, So
             howManyContactsAfter2025()
         case .withoutSorting:
             contactsSearchBar.setImage(UIImage(named: "optionUnselected"), for: .bookmark, state: .normal)
-            filteredContacts.shuffle()
+            sortedContacts.shuffle()
         }
         contactsTable.reloadData()
     }

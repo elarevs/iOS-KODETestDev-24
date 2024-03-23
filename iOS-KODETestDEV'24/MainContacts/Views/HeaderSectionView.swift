@@ -17,6 +17,7 @@ class HeaderSectionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -33,7 +34,9 @@ class HeaderSectionView: UIView {
         configureYearLabel()
         configureLeftLine()
         configureRightLine()
-        
+    }
+    
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             yearLabel.topAnchor.constraint(equalTo: self.topAnchor),
             yearLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),

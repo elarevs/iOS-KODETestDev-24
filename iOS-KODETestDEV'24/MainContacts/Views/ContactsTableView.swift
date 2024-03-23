@@ -19,7 +19,6 @@ final class ContactsTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - ContactTableView setup
     private func configureTableView() {
         self.showsVerticalScrollIndicator = false
         self.backgroundColor = .white

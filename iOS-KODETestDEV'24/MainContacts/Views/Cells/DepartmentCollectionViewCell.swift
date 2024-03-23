@@ -17,6 +17,7 @@ final class DepartmentCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -27,8 +28,6 @@ final class DepartmentCollectionViewCell: UICollectionViewCell {
         addSubview(departmentLabel)
         addSubview(selectedCellLine)
         addSubview(lineBottom)
-        
-        setConstraints()
         
         configureDepartmentLabel()
         configureSelectedCell()

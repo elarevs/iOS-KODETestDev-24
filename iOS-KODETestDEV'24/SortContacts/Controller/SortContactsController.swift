@@ -15,7 +15,7 @@ enum SortingType {
 }
 
 protocol SortApplyDelegate: AnyObject{
-    func applyFilter(_ sortingType: SortingType)
+    func applySort(_ sortingType: SortingType)
 }
 
 final class SortViewController: UIViewController {
@@ -38,17 +38,19 @@ final class SortViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setConstraints()
         backButtonSetup()
     }
     
     private func setupViews() {
-        
         view.backgroundColor = .white
         title = "Сортировка"
         
         setupSorting(.alphabetically)
         setupSorting(.byBirthday)
-        
+    }
+    
+    private func setConstraints() {
         alphabeticallySortingView.translatesAutoresizingMaskIntoConstraints = false
         byBirthdaySortingView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -95,9 +97,9 @@ final class SortViewController: UIViewController {
     @objc func alphabeticallyButtonTapped(_ sender: UIButton) {
         print("alphabeticallyButtonTapped")
         if alphabeticallySortingView.selectButton.isSelected {
-            sortApplyDelegate?.applyFilter(.withoutSorting)
+            sortApplyDelegate?.applySort(.withoutSorting)
         } else {
-            sortApplyDelegate?.applyFilter(.alphabetically)
+            sortApplyDelegate?.applySort(.alphabetically)
         }
         alphabeticallySortingView.selectButton.isSelected = !alphabeticallySortingView.selectButton.isSelected
         byBirthdaySortingView.selectButton.isSelected = false
@@ -107,9 +109,9 @@ final class SortViewController: UIViewController {
     @objc func byBirthdayButtonTapped(_ sender: UIButton) {
         print("byBirthdayButtonTapped")
         if byBirthdaySortingView.selectButton.isSelected {
-            sortApplyDelegate?.applyFilter(.withoutSorting)
+            sortApplyDelegate?.applySort(.withoutSorting)
         } else {
-            sortApplyDelegate?.applyFilter(.byBirthday)
+            sortApplyDelegate?.applySort(.byBirthday)
         }
         alphabeticallySortingView.selectButton.isSelected = false
         byBirthdaySortingView.selectButton.isSelected = !byBirthdaySortingView.selectButton.isSelected
