@@ -138,10 +138,6 @@ final class ContactsViewController: UIViewController {
         }
     }
     
-//    private func updateContactData(_ contacts: [Contact]) {
-//        self.contacts = contacts
-//    }
-    
     // MARK: - Updates
     private func updateUIOnSuccess() {
         self.dataRefreshControl.endRefreshing()
@@ -202,15 +198,17 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
         let contact = sortedContacts[indexPath.row]
         print(sortedContacts.count)
         if currentSortingType == .byBirthday {
-            print(howManyContactsAfter2025)
+            cell.dateOfBirthLabel.isHidden = false
+//          print(howManyContactsAfter2025)
             if indexPath.section == 0 {
                 cell.configure(contacts: contact)
             } else if indexPath.section == 1 {
-                print(sortedContacts.count)
-                print([indexPath.row + sortedContacts.count - counterOfContactsAfter2025])
+//                print(sortedContacts.count)
+//                print([indexPath.row + sortedContacts.count - counterOfContactsAfter2025])
                 cell.configure(contacts: sortedContacts[indexPath.row + sortedContacts.count - counterOfContactsAfter2025])
             }
         } else {
+            cell.dateOfBirthLabel.isHidden = true
             cell.configure(contacts: contact)
         }
         return cell

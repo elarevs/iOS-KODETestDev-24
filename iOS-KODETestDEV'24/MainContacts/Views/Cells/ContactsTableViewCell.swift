@@ -89,7 +89,7 @@ final class ContactTableViewCell: UITableViewCell {
         guard let formattedDate = formattedDate else {
             return
         }
-        
+                
         if formattedDate.prefix(1) == "0" {
             let newFormattedDate = formattedDate.dropFirst()
             dateOfBirthLabel.text = String(newFormattedDate.prefix(5))
@@ -132,6 +132,7 @@ final class ContactTableViewCell: UITableViewCell {
     }
     
     private func configureDateOfBirthLabel() {
+        dateOfBirthLabel.isHidden = true
         dateOfBirthLabel.textColor = UIColor(red: 0.333, green: 0.333, blue: 0.361, alpha: 1)
         dateOfBirthLabel.font = UIFont(name: "Inter-Regular", size: 15)
     }
