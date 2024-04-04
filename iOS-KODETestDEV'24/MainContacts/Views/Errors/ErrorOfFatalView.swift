@@ -8,19 +8,22 @@
 import Foundation
 import UIKit
 
- class FatalError: UIView {
+class FatalError: UIView {
 
     private let errorImageView = UIImageView()
     private let errorTitleLabel = UILabel()
     private let errorDescriptionLabel = UILabel()
     lazy var tryAgainButton = UIButton()
+     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
     }
-     @objc func updateTTT() {
+     
+    @objc func updateTTT() {
          print("Try to send request again")
-     }
+    }
+     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -32,16 +35,16 @@ import UIKit
         addSubview(errorTitleLabel)
         addSubview(errorDescriptionLabel)
         addSubview(tryAgainButton)
-
-        setConstraints()
+        
+        setContraints()
         
         configureErrorImageView()
         configureErrorTitleLabel()
         configureErrorDescriptionLabel()
         configureTryAgainButton()
     }
-
-     private func setConstraints() {
+    
+    private func setContraints() {
         NSLayoutConstraint.activate([
             errorImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             errorImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
@@ -60,26 +63,30 @@ import UIKit
             tryAgainButton.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
-
+     
      private func configureErrorImageView() {
+         errorImageView.translatesAutoresizingMaskIntoConstraints = false
         errorImageView.clipsToBounds = true
         errorImageView.contentMode = .scaleAspectFill
         errorImageView.image = UIImage(named: "flying-saucer")
     }
     
     private func configureErrorTitleLabel() {
+        errorTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         errorTitleLabel.text = "Какой-то сверхразум все сломал"
         errorTitleLabel.textColor = UIColor(red: 0.02, green: 0.02, blue: 0.063, alpha: 1)
         errorTitleLabel.font = UIFont(name: "Inter-SemiBold", size: 17)
     }
     
     private func configureErrorDescriptionLabel() {
+        errorDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         errorDescriptionLabel.text = "Постараемся быстро починить"
         errorDescriptionLabel.textColor = UIColor(red: 0.591, green: 0.591, blue: 0.609, alpha: 1)
         errorDescriptionLabel.font = UIFont(name: "Inter-Regular", size: 16)
     }
     
     private func configureTryAgainButton() {
+        tryAgainButton.translatesAutoresizingMaskIntoConstraints = false
         tryAgainButton.setTitle("Попробовать снова", for: .normal)
         tryAgainButton.titleLabel?.font = UIFont(name: "Inter-SemiBold", size: 13)
         tryAgainButton.setTitleColor(UIColor.systemGray4, for: .highlighted)

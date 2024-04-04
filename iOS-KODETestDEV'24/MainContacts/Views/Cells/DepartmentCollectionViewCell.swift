@@ -17,7 +17,6 @@ final class DepartmentCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
-        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -29,12 +28,6 @@ final class DepartmentCollectionViewCell: UICollectionViewCell {
         addSubview(selectedCellLine)
         addSubview(lineBottom)
         
-        configureDepartmentLabel()
-        configureSelectedCell()
-        configurelineBottom()
-    }
-    
-    private func setConstraints() {
         NSLayoutConstraint.activate([
             departmentLabel.topAnchor.constraint(equalTo: self.topAnchor),
             departmentLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -51,6 +44,10 @@ final class DepartmentCollectionViewCell: UICollectionViewCell {
             lineBottom.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             lineBottom.widthAnchor.constraint(equalToConstant: 150)
         ])
+        
+        configureDepartmentLabel()
+        configureSelectedCell()
+        configurelineBottom()
     }
     
     private func configureDepartmentLabel() {

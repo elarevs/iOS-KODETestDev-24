@@ -29,5 +29,7 @@ struct Contact: Codable, Comparable {
 
 // MARK: - ItemsQuery
 struct ContactsQuery: Codable {
+    
     let items: [Contact]
+    
 }

@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+enum SortingType {
+    
+    case alphabetically
+    case byBirthday
+    case withoutSorting
+    
+}

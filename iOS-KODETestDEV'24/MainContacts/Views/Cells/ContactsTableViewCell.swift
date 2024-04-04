@@ -21,7 +21,6 @@ final class ContactTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
-        setConstraints()
     }
 
     required init?(coder: NSCoder) {
@@ -44,15 +43,6 @@ final class ContactTableViewCell: UITableViewCell {
         addSubview(userTagLabel)
         addSubview(dateOfBirthLabel)
         
-        configurePhotoImageView()
-        configureNameLabel()
-        configurePositionLabel()
-        configureUserTagLabel()
-        configureDateOfBirthLabel()
-     
-    }
-    
-    private func setConstraints() {
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         positionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -78,6 +68,13 @@ final class ContactTableViewCell: UITableViewCell {
             dateOfBirthLabel.centerYAnchor.constraint(equalTo: photoImageView.centerYAnchor),
             dateOfBirthLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
+        
+        configurePhotoImageView()
+        configureNameLabel()
+        configurePositionLabel()
+        configureUserTagLabel()
+        configureDateOfBirthLabel()
+     
     }
     
     func configure(contacts: Contact) {

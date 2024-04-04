@@ -28,14 +28,7 @@ final class SearchError: UIView {
         addSubview(errorTitleLabel)
         addSubview(errorDescriptionLabel)
         backgroundColor = .white
-        setConstraints()
         
-        configureErrorImage()
-        configureErrorTitleLabel()
-        configureErrorDescriptionLabel()
-    }
-    
-    private func setConstraints() {
         NSLayoutConstraint.activate([
             errorImageView.topAnchor.constraint(equalTo: self.topAnchor),
             errorImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -48,8 +41,12 @@ final class SearchError: UIView {
             errorDescriptionLabel.topAnchor.constraint(equalTo: errorTitleLabel.bottomAnchor, constant: 12),
             errorDescriptionLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
-    }
 
+        configureErrorImage()
+        configureErrorTitleLabel()
+        configureErrorDescriptionLabel()
+    }
+    
     private func configureErrorImage() {
         errorImageView.translatesAutoresizingMaskIntoConstraints = false
         errorImageView.clipsToBounds = true

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol SortButtonDelegate: AnyObject {
+protocol SortedDepartmentsDelegate: AnyObject {
     func didSelectSort(selectedData: Departments)
 }
 
@@ -18,7 +18,7 @@ final class DepartmentMenuCollectionView: UICollectionView {
     private let departmentLayout = UICollectionViewFlowLayout()
     private var selectedIndexPath: IndexPath?
     
-    weak var sortDelegate: SortButtonDelegate?
+    weak var sortDelegate: SortedDepartmentsDelegate?
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: .zero, collectionViewLayout: departmentLayout)

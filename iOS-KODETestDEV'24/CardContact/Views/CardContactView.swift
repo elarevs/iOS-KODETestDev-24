@@ -45,7 +45,7 @@ final class CardContactView: UIView {
         NSLayoutConstraint.activate([
             photoImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
             photoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            photoImageView.heightAnchor.constraint(equalToConstant: 104),
+//            photoImageView.heightAnchor.constraint(equalToConstant: 104),
             photoImageView.widthAnchor.constraint(equalToConstant: 104),
             
             nameLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 12),

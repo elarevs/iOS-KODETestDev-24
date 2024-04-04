@@ -8,18 +8,21 @@
 import UIKit
 import Foundation
 
+// MARK: - Core
 final class ContactsViewController: UIViewController {
     
-    var counterOfContactsAfter2025 = 0
+    // MARK: - Consts & variables
+    var counterOfContactsAfter2025 = 0  // - переменная для посчёта количества контактов в секции
     var nameOfSections = ["2024", "2025"]
-    private let networkManager = NetworkManager.shared
     
+    private let networkManager = NetworkManager.shared // - синглтон
     private let contactsSearchBar = ContactsSearchBar()
     private let departmentMenuCollection = DepartmentMenuCollectionView()
     private let contactsTable = ContactsTableView()
     private let dataRefreshControl = UIRefreshControl()
+    // Errors
     private var searchError = SearchError()
-    private let errorReload = FatalError()
+    private let fatalError = FatalError()
     
     private var contacts = [Contact]()
     private var sortedContacts = [Contact]()
@@ -28,20 +31,20 @@ final class ContactsViewController: UIViewController {
     private var searchText: String = ""
     private let cellIdentifier = "ContactTableViewCell"
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        setDelegates()
-        setConstraints()
     }
     
+    // MARK: - Setup view
     private func setupViews() {
         view.backgroundColor = .white
         
         view.addSubview(contactsSearchBar)
         view.addSubview(departmentMenuCollection)
         view.addSubview(contactsTable)
-        view.addSubview(errorReload)
+        view.addSubview(fatalError)
         view.addSubview(searchError)
         
         errorReloadSetup()
@@ -49,16 +52,20 @@ final class ContactsViewController: UIViewController {
         pullToRefreshSetup()
         fetchContacts()
         
+        departmentMenuCollection.sortDelegate = self
+        contactsSearchBar.contactsSearchBarDelegate = self
+        
         searchError.isHidden = true
-    }
-    
-    private func setConstraints() {
+        
+        contactsTable.delegate = self
+        contactsTable.dataSource = self
+        
         contactsSearchBar.translatesAutoresizingMaskIntoConstraints = false
         departmentMenuCollection.translatesAutoresizingMaskIntoConstraints = false
         contactsTable.translatesAutoresizingMaskIntoConstraints = false
         dataRefreshControl.translatesAutoresizingMaskIntoConstraints = false
         searchError.translatesAutoresizingMaskIntoConstraints = false
-        errorReload.translatesAutoresizingMaskIntoConstraints = false
+        fatalError.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             contactsSearchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 6),
@@ -76,11 +83,11 @@ final class ContactsViewController: UIViewController {
             contactsTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             contactsTable.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            errorReload.topAnchor.constraint(equalTo: view.topAnchor, constant: -100),
-            errorReload.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            errorReload.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            errorReload.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            errorReload.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            fatalError.topAnchor.constraint(equalTo: view.topAnchor, constant: -100),
+            fatalError.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            fatalError.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            fatalError.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            fatalError.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             searchError.topAnchor.constraint(equalTo: view.topAnchor, constant: 220),
             searchError.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -88,18 +95,11 @@ final class ContactsViewController: UIViewController {
             searchError.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-    
-    private func setDelegates() {
-        departmentMenuCollection.sortDelegate = self
-        contactsSearchBar.searchBarDelegate = self
-        
-        contactsTable.delegate = self
-        contactsTable.dataSource = self
-    }
-    
+
+    // MARK: - Error
     private func errorReloadSetup(){
-        errorReload.tryAgainButton.addTarget(self, action: #selector(requestData), for: .touchUpInside)
-        errorReload.isHidden = true
+        fatalError.tryAgainButton.addTarget(self, action: #selector(requestData), for: .touchUpInside)
+        fatalError.isHidden = true
     }
     
     @objc func requestData() {
@@ -113,6 +113,7 @@ final class ContactsViewController: UIViewController {
         contactsTable.isHidden = isHidden
     }
     
+    // MARK: - Refresh
     private func pullToRefreshSetup() {
         dataRefreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
         contactsTable.addSubview(dataRefreshControl)
@@ -124,7 +125,6 @@ final class ContactsViewController: UIViewController {
     }
     
     // MARK: - Networking
-    
     private func fetchContacts() {
         networkManager.fetchContacts { [weak self] result in
             switch result {
@@ -138,16 +138,19 @@ final class ContactsViewController: UIViewController {
         }
     }
     
-    private func updateContactData(_ contacts: [Contact]) {
-        self.contacts = contacts
-    }
+//    private func updateContactData(_ contacts: [Contact]) {
+//        self.contacts = contacts
+//    }
     
+    // MARK: - Updates
     private func updateUIOnSuccess() {
         self.dataRefreshControl.endRefreshing()
         self.sortedContactsByDepartment()
         self.departmentMenuCollection.updateSortDelegate()
-        self.errorReload.isHidden = true
+        
+        self.fatalError.isHidden = true
         self.errorViewToggleVisibility(isHidden: false)
+        
         if currentSortingType != .withoutSorting {
             contactsSearchBar.setImage(UIImage(named: "optionSelected"), for: .bookmark, state: .normal)
         } else {
@@ -156,8 +159,10 @@ final class ContactsViewController: UIViewController {
     }
     
     private func updateUIOnFailure() {
-        self.errorReload.isHidden = false
-        self.errorViewToggleVisibility(isHidden: true)
+        DispatchQueue.main.async {
+            self.fatalError.isHidden = false
+            self.errorViewToggleVisibility(isHidden: true)
+        }
     }
     
 }
@@ -165,7 +170,8 @@ final class ContactsViewController: UIViewController {
 // MARK: - TableView Delegate + DataSource
 
 extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
+    // MARK: - Number of sections
     func numberOfSections(in tableView: UITableView) -> Int {
         if currentSortingType == .byBirthday {
             return 2
@@ -175,6 +181,7 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    // MARK: - Number of rows in sections
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if currentSortingType == .byBirthday {
             if section == 0 {
@@ -186,6 +193,7 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
         return sortedContacts.count
     }
     
+    // MARK: - Content of cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ContactTableViewCell else {
             return UITableViewCell()
@@ -208,9 +216,9 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    // MARK: - Tapped for row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        print(indexPath.section, indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true) //снять выделение при нажатии
         var selectedContact = sortedContacts[indexPath.row]
         if currentSortingType == .byBirthday {
             if indexPath.section == 0 {
@@ -221,13 +229,15 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let cardContactsViewController = CardContactViewController()
         cardContactsViewController.contactDetail = selectedContact
-        navigationController?.pushViewController(cardContactsViewController, animated: true)
+        navigationController?.pushViewController(cardContactsViewController, animated: true) //переход на карточку с контактом
     }
     
+    // MARK: - Title section
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return nameOfSections[section]
     }
     
+    // MARK: - Custom header view
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = HeaderSectionView(frame: CGRect.zero)
         headerView.yearLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
@@ -242,30 +252,39 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
         return headerView
     }
     
+    // MARK: - Height of header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if (currentSortingType == .alphabetically) || (currentSortingType == .withoutSorting) {
             return 0
-        } else if section >= sortedContacts.count {
-            return 0
-        }
-        return 30
+        } 
+//        else if section >= sortedContacts.count {
+//            return 0
+//        }
+            else {
+                return 30
+            }
     }
     
 }
 
-// MARK: - SortButton Delegate
-
-extension ContactsViewController: SortButtonDelegate {
-    
+// MARK: - Sorted in departments delegate
+extension ContactsViewController: SortedDepartmentsDelegate {
     func didSelectSort(selectedData: Departments) {
         selectedDepartment = selectedData
         sortedContactsByDepartment()
     }
-    
 }
 
+// MARK: - Sorted apply delegate (alhabeticall/birthday/without)
+extension ContactsViewController: SortApplyDelegate {
+    func applySort(_ sortingType: SortingType) {
+        currentSortingType = sortingType
+        sortedContactsByDepartment()
+    }
+}
+
+// MARK: - Contacts SearchBar Delegate
 extension ContactsViewController: ContactsSearchBarDelegate {
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
         sortedContactsByDepartment()
@@ -274,19 +293,17 @@ extension ContactsViewController: ContactsSearchBarDelegate {
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         let secondVC = SortViewController(initialSortingType: currentSortingType)
         secondVC.sortApplyDelegate = self
-        let navVC = UINavigationController(rootViewController: secondVC)
-        if let sheet = navVC.sheetPresentationController {
-            sheet.detents = [.large()]
-        }
-        navigationController?.present(navVC, animated: true)
+        navigationController?.present(secondVC, animated: true) //переход на карточку с контактом
+//        let navVC = UINavigationController(rootViewController: secondVC)
+//        if let sheet = navVC.sheetPresentationController {
+//            sheet.detents = [.large()]
+//        }
+//        navigationController?.present(navVC, animated: true)
     }
-    
 }
 
 // MARK: - Counting contacts births after 2025
-
 extension ContactsViewController {
-    
     func howManyContactsAfter2025() -> Int {
         counterOfContactsAfter2025 = 0
         var dateComponents = DateComponents()
@@ -309,18 +326,10 @@ extension ContactsViewController {
         }
         return counterOfContactsAfter2025
     }
-    
 }
 
-// MARK: - SortDelegate
-
-extension ContactsViewController: SortApplyDelegate {
-
-    func applySort(_ sortingType: SortingType) {
-        currentSortingType = sortingType
-        sortedContactsByDepartment()
-    }
-
+// MARK: - Sorted
+extension ContactsViewController {
     func sortedContactsByDepartment() {
         if selectedDepartment == .all {
             sortedContacts = contacts
@@ -348,8 +357,8 @@ extension ContactsViewController: SortApplyDelegate {
         
         contactsTable.isHidden = sortedContacts.isEmpty
         searchError.isHidden = !sortedContacts.isEmpty
-        contactsSearchBar.searchTextField.clearButtonMode = .always
         
+        contactsSearchBar.searchTextField.clearButtonMode = .always
         if !searchError.isHidden {
             contactsSearchBar.searchTextField.clearButtonMode = .never
         }
@@ -373,5 +382,4 @@ extension ContactsViewController: SortApplyDelegate {
         }
         contactsTable.reloadData()
     }
-    
 }

@@ -36,7 +36,7 @@ final class PhoneView: UIView {
         NSLayoutConstraint.activate([
             phoneImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
             phoneImageView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            phoneImageView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+//            phoneImageView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
             numberLabel.centerYAnchor.constraint(equalTo: phoneImageView.centerYAnchor),
             numberLabel.leadingAnchor.constraint(equalTo: phoneImageView.trailingAnchor, constant: 12),

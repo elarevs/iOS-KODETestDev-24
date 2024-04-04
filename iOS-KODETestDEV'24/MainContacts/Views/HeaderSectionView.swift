@@ -8,16 +8,17 @@
 import Foundation
 import UIKit
 
-class HeaderSectionView: UIView {
+final class HeaderSectionView: UIView {
     
+    // MARK: - Consts & variables
     private let leftLineView = UIView()
     private let rightLineView = UIView()
     let yearLabel = UILabel()
     
+    // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
-        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -31,12 +32,6 @@ class HeaderSectionView: UIView {
         addSubview(leftLineView)
         addSubview(rightLineView)
         
-        configureYearLabel()
-        configureLeftLine()
-        configureRightLine()
-    }
-    
-    private func setConstraints() {
         NSLayoutConstraint.activate([
             yearLabel.topAnchor.constraint(equalTo: self.topAnchor),
             yearLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
@@ -54,6 +49,10 @@ class HeaderSectionView: UIView {
             rightLineView.widthAnchor.constraint(equalToConstant: 72),
             rightLineView.heightAnchor.constraint(equalToConstant: 1)
         ])
+        
+        configureYearLabel()
+        configureLeftLine()
+        configureRightLine()
     }
     
     private func configureYearLabel() {

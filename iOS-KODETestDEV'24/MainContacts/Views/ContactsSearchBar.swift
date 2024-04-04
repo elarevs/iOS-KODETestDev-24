@@ -15,7 +15,7 @@ protocol ContactsSearchBarDelegate: AnyObject {
 
 final class ContactsSearchBar: UISearchBar {
     
-    weak var searchBarDelegate: ContactsSearchBarDelegate?
+    weak var contactsSearchBarDelegate: ContactsSearchBarDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,7 +58,7 @@ final class ContactsSearchBar: UISearchBar {
 extension ContactsSearchBar: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchBarDelegate?.searchBar(searchBar, textDidChange: searchText)
+        contactsSearchBarDelegate?.searchBar(searchBar, textDidChange: searchText)
         self.setImage(UIImage(named: "searchDark"), for: .search, state: .normal)
         self.showsCancelButton = true
     }
@@ -84,8 +84,8 @@ extension ContactsSearchBar: UISearchBarDelegate {
         self.placeholder = "Введи имя, тег, почту ..."
     }
     
-    func searchBarBookmarkButtonClicked(_ searcBar: UISearchBar) {
-        searchBarDelegate?.searchBarBookmarkButtonClicked(searcBar)
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        contactsSearchBarDelegate?.searchBarBookmarkButtonClicked(searchBar)
     }
     
 }

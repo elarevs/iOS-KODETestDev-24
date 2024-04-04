@@ -8,12 +8,6 @@
 import Foundation
 import UIKit
 
-enum SortingType {
-    case alphabetically
-    case byBirthday
-    case withoutSorting
-}
-
 protocol SortApplyDelegate: AnyObject{
     func applySort(_ sortingType: SortingType)
 }
@@ -39,7 +33,7 @@ final class SortViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setConstraints()
-        backButtonSetup()
+//        backButtonSetup()
     }
     
     private func setupViews() {
@@ -118,17 +112,17 @@ final class SortViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func backButtonSetup() {
-        let backButton = UIBarButtonItem(image: UIImage(named: "arrow"),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(backButtonTapped))
-        backButton.tintColor = UIColor.black
-        navigationItem.leftBarButtonItem = backButton
-    }
-    
-    @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
-    }
+//    private func backButtonSetup() {
+//        let backButton = UIBarButtonItem(image: UIImage(named: "arrow"),
+//                                         style: .plain,
+//                                         target: self,
+//                                         action: #selector(backButtonTapped))
+//        backButton.tintColor = UIColor.black
+//        navigationItem.leftBarButtonItem = backButton
+//    }
+//    
+//    @objc private func backButtonTapped() {
+//        navigationController?.popViewController(animated: true)
+//    }
     
 }
