@@ -16,7 +16,6 @@
 
 <p float="left">
   <img src="/ListsOfContacts1.png" width="240" />
-   <img src="/ListsOfContacts2.png" width="240" />
   <img src="/ListsOfContacts3.png" width="240" />
     <img src="/ListsOfContacts4.png" width="240" />
 </p>
